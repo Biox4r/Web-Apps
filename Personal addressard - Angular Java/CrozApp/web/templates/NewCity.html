@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html >
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link href="Css/Contact.css" rel="stylesheet">
+    </head>
+    <body>       
+        <form name="newCity">
+            <div ng-controller="newCityCtrl" class="container" >
+                <div class="btn-group btn-group-justified">
+                    <div class="pull-left"><div class="btn-group">
+                            <button type="button" class="btn btn-primary" ng-click="goCities();">Cities</button>
+                        </div>
+                    </div>
+                </div>
+                <div>  
+                    <div > 
+                        <div><label class="lbl"><b>City name</b></label></div>
+                        <div><input  type="text" placeholder="City name - letters or number (max 10 characters)" ng-model="cityObj.name" maxlength="50" pattern="[a-zA-Z0-9\s]+" required></div>
+                        <div><label class="lbl"><b>Zip code</b></label></div>
+                        <div><input  type="text" placeholder="Zip code - letters or number (max 10 characters)" ng-model="cityObj.zip_code" maxlength="10" pattern="[0-9]+" required></div>   
+                    </div>
+                </div>
+                <div class="container1">
+                    <label class="lbl"><b>Select country</b></label>
+
+                    <select  id="Country" name="Country" class="form-control" size="5" 
+                             ng-model ="selectedValue">                                
+                        <option required ng-repeat="cnt in coun2" value="{{cnt.id}}" ng-click="selectCity(cnt)">   
+                            {{cnt.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="container1" style="background-color:rgb(241, 241, 241)">
+                    <button id="login-button" class="button button-block button-calm" ng-click=" newCity.$valid && insertCity()">Insert new City!</button>
+                </div>
+            </div>
+        </form>  
+    </body>
+</html>

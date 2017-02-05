@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html >
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link href="Css/Contact.css" rel="stylesheet">
+    </head>
+    <body>       
+        <form name="NewCountry">
+            <div ng-controller="countryCtrl" class="container" >
+                <div class="btn-group btn-group-justified">
+                    <div class="pull-left"><div class="btn-group">
+                            <button type="button" class="btn btn-primary" ng-click="goCountries()">Countries</button>
+                        </div>
+                    </div>
+                </div>
+                <div >  
+                    <div> 
+                        <div><label class="lbl"><b>Country name</b></label></div>
+                        <div><input type="text" placeholder="Country name - use only letters" ng-model="obj.name" required maxlength="50" pattern="[a-zA-Z\s]+"></div>
+                        <div><label class="lbl"><b>Alpha 2</b></label></div>
+                        <div><input type="text" placeholder="Alpha 2 - use only 2 letter's that match the countries alpha 2" ng-model="obj.alpha_2" required maxlength="2" pattern="[a-zA-Z]+"></div>  
+                        <div><label class="lbl"><b>Alpha 3</b></label></div>
+                        <div><input type="text" placeholder="Alpha 3 - use only 2 letter's that match the countries alpha 3" ng-model="obj.alpha_3" required maxlength="3" pattern="[a-zA-Z]+"></div>  
+                    </div>
+                </div>       
+                <div>
+                </div>
+                <div class="container1" style="background-color:rgb(241, 241, 241)">
+                    <button id="login-button" class="button button-block button-calm" ng-click="NewCountry.$valid && insertCountry()">Insert new Country!</button>
+                </div>
+            </div>
+        </form>  
+    </body>
+</html>

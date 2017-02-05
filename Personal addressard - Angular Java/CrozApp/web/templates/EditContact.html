@@ -1,0 +1,145 @@
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+
+<div>
+                    
+
+-->
+<html >
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link href="Css/Contact.css" rel="stylesheet">
+
+    </head>
+    <body>       
+
+
+        <div ng-controller="contactCtrl"  class="container" >
+            <div class="btn-group btn-group-justified">
+                <div class="pull-left"><div class="btn-group">
+                        <button type="button" class="btn btn-primary" ng-click="goContacts()">Back to Contacts</button>
+                    </div>
+                </div>
+            </div>
+            <form name="contactForm">
+                <div ng-repeat="con in contact">  
+                    <div ng-if="$index == 0">
+
+                        <div hidden>
+                            <input type="text" placeholder="First name" name="firstname" ng-model="con.id" required>
+                        </div>
+                        <div>
+                            <label class="lbl"><b>First name</b></label>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="First name (up to 20 letter characters)" name="firstname" ng-model="con.first_name" required pattern="[a-zA-Z\s]+" maxlength="20">
+                            <span ng-show="contactForm.firstname.$dirty && contactForm.firstname.$error.required" class="help-block">first name required</span>
+                            <span ng-show="contactForm.firstname.$dirty && contactForm.firstname.$error.pattern" class="help-block">Use only charachter letters</span>
+                        </div>
+
+                        <div>
+                            <label class="lbl"><b>Last name</b></label>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Last name (up to 50 letter characters)" name="lastname" ng-model="con.last_name" required pattern="[a-zA-Z\s]+" maxlength="50">
+                            <span ng-show="contactForm.lastname.$dirty && contactForm.lastname.$error.required" class="help-block">Last name required</span>
+                            <span ng-show="contactForm.lastname.$dirty && contactForm.lastname.$error.pattern" class="help-block">Use only letters</span>
+                        </div>
+
+                        <div>
+                            <label class="lbl"><b>Phone</b></label>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Phone Number (format: xxx-xxxx-xxxx)" name="phone" ng-model="con.phone" pattern="^\d{3}-\d{3,4}-\d{3,4}$" required maxlength="13">
+                            <span ng-show="contactForm.phone.$dirty && contactForm.phone.$error.required" class="help-block">Phone required</span>
+                            <span ng-show="contactForm.phone.$dirty && contactForm.phone.$error.pattern" class="help-block">Invalid format</span>
+                        </div>
+
+                        <div>
+
+                            <label class="lbl"><b>Email</b></label></div>
+                        <div><input type="text" placeholder="Email: croz@croz.com for example" name="email" ng-model="con.email"  maxlength="50" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required></div>
+                        <span ng-show="contactForm.email.$dirty && contactForm.email.$error.required" class="help-block">Email required</span>
+                        <span ng-show="contactForm.email.$dirty && contactForm.email.$error.pattern" class="help-block">Invalid format</span>
+
+                    </div>
+
+
+                    <div ng-if="$index == 1">
+
+                        <div>
+                            <label class="lbl"><b>Street name</b></label>
+
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Street name" name="streetname"  ng-model="con.street" pattern="[a-zA-Z0-9\s]+" required maxlength="50">
+                            <span ng-show="contactForm.streetname.$dirty && contactForm.streetname.$error.required" class="help-block">Sreet name required</span>
+                            <span ng-show="contactForm.streetname.$dirty && contactForm.streetname.$error.pattern" class="help-block">Use only letters or numbers</span>
+                        </div>
+
+
+                        <div>
+                            <label class="lbl"><b>Street number</b></label>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Street number" name="streetnumber" ng-model="con.street_no" required maxlength="5" pattern="\d{1,5}">
+                            <span ng-show="contactForm.streetnumber.$dirty && contactForm.streetnumber.$error.required" class="help-block">Sreet number required</span>
+                            <span ng-show="contactForm.streetnumber.$dirty && contactForm.streetnumber.$error.pattern" class="help-block">Use only numbers</span>
+                        </div>
+
+                    </div>
+
+                    <div ng-if="$index == 2"> 
+
+                        <div hidden><input type="text" placeholder="City id" ng-model="con.id" required></div>
+
+                        <div hidden><input type="text" placeholder="Street number" ng-model="con.name"  required></div>
+
+                    </div>
+
+                    <div ng-if="$index == 4"> 
+                        <div hidden><input type="text" placeholder="Gender id" ng-model="con.id" required></div>
+                    </div>
+
+                </div>
+                <div class="container1">
+                    <label class="lbl"><b>Select city</b></label>
+                    <select  id="City" name="City" class="form-control" size="2" 
+                             ng-model ="selectedValue1" >                                
+                        <option  ng-repeat="city in chooseCities" value="{{city.id}}" ng-click="selectCity(city);">   
+                            {{city.name}}a
+                        </option>
+                    </select>
+                </div>
+                <div class="container1">
+                    <label class="lbl"><b>Select gender</b></label>
+
+                    <select  id="Country" name="Gender" class="form-control" size="2" 
+                             ng-model ="selectedValue3">                                
+                        <option ng-repeat="gen in gender" value="{{gen.id}}" ng-click="selectGender(gen)">   
+
+                            {{gen.name}}
+                        </option>
+                    </select>
+                </div> 
+                
+                
+                 <div class="container1" style="background-color:rgb(241, 241, 241)">
+                <button type="button" class=" colorbtn cancelbtn colorbtn" ng-disable="!contactForm.$valid" ng-disabled="!contactForm.$valid" ng-click="updateContact(contact)">Update Contact</button>
+                <button type="button" class="cancelbtn" ng-click="deleteContact(contact)">Delete Contact</button>
+            </div>
+
+            </form>
+
+
+           
+        </div>
+
+
+    </body>
+</html>

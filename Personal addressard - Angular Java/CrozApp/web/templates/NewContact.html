@@ -1,0 +1,88 @@
+
+
+<html >
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link href="Css/Contact.css" rel="stylesheet">
+
+    </head>
+    <body>       
+        <form name = "newContact">
+
+            <div  ng-controller="newContactCtrl"  class="container" >
+                <div class="btn-group btn-group-justified">
+                    <div class="pull-left"><div class="btn-group">
+                            <button type="button" class="btn btn-primary" ng-click="goContacts()">Back to Contacts</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div >  
+                    <div> 
+                        <div><label class="lbl"><b>First name</b></label></div>
+                        <div><input type="text" placeholder="First name (up to 20 letter characters)" ng-model="con.first_name" required maxlength="20" pattern="[a-zA-Z0-9\s]+"></div>
+
+                        <div><label class="lbl"><b>Last name</b></label></div>
+                        <div><input type="text" placeholder="Last name (up to 50 letter characters)" ng-model="con.last_name" required maxlength="50" pattern="[a-zA-Z0-9\s]+"></div>
+
+                        <div><label class="lbl"><b>Phone</b></label></div>
+                        <div><input type="text" placeholder="Phone Number (format: xxx-xxxx-xxxx)" ng-model="con.phone" required maxlength="13" pattern="^\d{3}-\d{3,4}-\d{3,4}$"></div>
+
+                        <div><label class="lbl"><b>Email</b></label></div>
+                        <div><input type="text" placeholder="Email: croz@croz.com for example" ng-model="con.email" required maxlength="50" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"></div>
+
+                    </div>
+
+
+                    <div > 
+
+                        <div><label class="lbl"><b>Street name</b></label></div>
+                        <div><input type="text" placeholder="Street name (up to 50 number or letter characters)" ng-model="con.street" required maxlength="50" pattern="[a-zA-Z0-9\s]+"></div>
+
+
+                        <div><label class="lbl"><b>Street number</b></label></div>
+                        <div><input type="text" placeholder="Street number (up to 50 number characters)" ng-model="con.street_no" required maxlength="5" pattern="\d{1,5}" ></div>
+
+                    </div>
+
+                </div>
+                <div class="container1">
+                    <label class="lbl"><b>Select city</b></label>
+                    <select  id="City" name="City" class="form-control" size="2" 
+                             ng-model ="selectedValue1" >                                
+                        <option  ng-repeat="city in chooseCities" value="{{city.id}} "ng-click="selectCity(city);">   
+                            {{city.name}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="container1">
+                    <label class="lbl"><b>Select gender</b></label>
+
+                    <select  id="Country" name="Gender" class="form-control" size="2" 
+                             ng-model ="selectedValue3">                                
+                        <option ng-repeat="gen in gender" value="{{gen.id}}" ng-click="selectGender(gen)">   
+
+                            {{gen.name}}
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                </div>
+                <div></div>
+                <div class="container1" style="background-color:rgb(241, 241, 241)">
+
+                    <button id="login-button" class="button button-block button-calm" ng-click="newContact.$valid && insertContact()">Insert new Contact!</button>
+
+                </div>
+            </div>
+        </form> 
+
+    </body>
+</html>
