@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>  
+    <head>  
+        <title>Angular JS table sort and filter example </title> 
+
+        <link href="Css/Countries.css" rel="stylesheet">
+
+    </head>  
+    <body >  
+        <div ng-controller="countriesCtrl" class="btn-group btn-group-justified">
+            <div class="pull-left"><div class="btn-group">
+                    <button ng-click="goMain();" type="button" class="btn btn-primary"> Back to Main menu</button>
+                </div></div>
+
+
+        </div>
+        <div >  
+            <div class="container-fluid">  
+                <hr />  
+                <table class="table table-striped">  
+                    <thead>  
+                        <tr>  
+                            <th>Edit</th>  
+                            <th>  
+                                <a href="" ng-click="order('name')">Name</a>  
+                            </th>  
+                            <th><a href="" ng-click="order('alpha_2')">Alpha 2</a> </th>
+                            <th><a href="" ng-click="order('alpha_3')">Alpha 3</a> </th> 
+
+                        </tr>  
+                    </thead>  
+                    <tbody>  
+                        <tr>  
+                            <td>Filter =>></td>  
+                            <td> <input type="text" ng-model="search.name" /></td>  
+                            <td> <input type="text" ng-model="search.alpha_2" /> </td>
+                            <td> <input type="text" ng-model="search.alpha_3" /> </td> 
+
+                        </tr>  
+                        <tr ng-repeat="country in countries| orderBy:predicate:reverse | filter:paginate| filter:search" ng-class-odd="'odd'">  
+                            <td>  
+                                <button class="btn" ng-click="setCountryId(country)">  
+                                    Edit  
+                                </button>  
+                            </td>  
+                            <td>{{ country.name}}</td>  
+                            <td>{{ country.alpha_2}}</td>
+                            <td>{{ country.alpha_3}}</td>  
+                        </tr>  
+                    </tbody>  
+                </table>  
+                <pagination total-items="totalItems" ng-model="currentPage"  
+                            max-size="3" boundary-links="true"  
+                            items-per-page="numPerPage" class="pagination-sm">  
+                </pagination>  
+            </div>  
+        </div> 
+        <div class="container2">
+            <div class="btn-group btn-group-justified">
+
+                <div class="text-center"><button class="btn btn-primary btn-sx" type="button" ng-click="newCountry()">New Country</button></div>
+            </div>
+        </div>  
+
+    </body>  
+</html> 

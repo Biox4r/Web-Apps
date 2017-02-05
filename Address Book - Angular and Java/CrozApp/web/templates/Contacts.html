@@ -1,0 +1,79 @@
+<!DOCTYPE html>  
+<html>  
+    <head>  
+        <title>Angular JS table sort and filter example </title> 
+
+        <link href="Css/Contacts.css" rel="stylesheet">
+
+    </head>  
+    <body >  
+        <div ng-controller="contactsCtrl" class="btn-group btn-group-justified">
+            <div class="pull-left"><div class="btn-group">
+                    <button type="button" class="btn btn-primary" ng-click="goMain()">Back to Main menu</button>
+                </div>
+            </div>
+
+
+        </div>
+        <div>  
+
+            <div class="container-fluid">  
+
+                <hr />  
+                <table class="table table-striped">  
+                    <thead>  
+                        <tr>  
+                            <th>Edit</th>  
+                            <th  class="id">
+                                <a  href="" ng-click="order('id')">id</a>
+                            </th>
+                            <th class="th">
+                                <a href="" ng-click="order('first_name')">First name</a>  
+                            </th>
+
+                            <th class="th"> <a href="" ng-click="order('last_name')">Last name</a> </th>  
+                            <th class="th"><a href="" ng-click="order('phone')">Phone</a> </th>  
+                            <th class="th"><a href="" ng-click="order('email')">Email</a> </th>  
+                        </tr>  
+                    </thead>  
+                    <tbody>  
+                        <tr>  
+                            <td>Filter =>></td>  
+                            <td > <input type="text" ng-model="search.id" /></td>
+                            <td> <input type="text" ng-model="search.first_name" /></td>  
+                            <td> <input type="text" ng-model="search.last_name" /> </td>  
+                            <td> <input type="text" ng-model="search.phone" /> </td>  
+                            <td> <input type="text" ng-model="search.email" /></td> 
+                        </tr>  
+                        <tr ng-repeat="contact in allcontacts| orderBy:predicate:reverse | filter:paginate| filter:search"  ng-class-odd="'odd'">  
+                            <td>  
+                                <button class="btn" ng-click=" setConId(contact);">  
+                                    Edit  
+                                </button>  
+                            </td>  
+                            <td >{{ contact.id}}</td> 
+                            <td>{{ contact.first_name}}</td>  
+                            <td>{{ contact.last_name}}</td>  
+                            <td>{{ contact.phone}}</td>  
+                            <td>{{ contact.email}}</td>  
+                        </tr>  
+                    </tbody>  
+                </table>  
+                <pagination total-items="totalItems" ng-model="currentPage"  
+                            max-size="5" boundary-links="true"  
+                            items-per-page="numPerPage" class="pagination-sm">  
+                </pagination>  
+
+
+
+            </div> 
+
+            <div class="container2">
+                <div class="btn-group btn-group-justified">
+
+                    <div class="text-center"><button class="btn btn-primary btn-sx" type="button" ng-click="newContact()">New Contact</button></div>
+                </div>
+            </div>  
+        </div>
+    </body>  
+</html> 
